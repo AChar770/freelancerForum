@@ -66,4 +66,45 @@ function FreelancerRow(freelancer) {
   `;
 }
 
+// This turns an ARRAY of freelancers into HTML
+function FreelancerRows(freelancers) {
+  return freelancers
+    .map(FreelancerRow) // create an array of HTML strings
+    .join("");          // remove commas so HTML works
+}
 
+// This component displays the average rate
+function AverageRate(rate) {
+  return `<h2>Average Hourly Rate: $${rate.toFixed(2)}</h2>`;
+}
+
+function render() {
+  const app = document.querySelector("#app");
+
+  // Insert valid table structure with a REAL tbody placeholder
+  app.innerHTML = `
+    ${AverageRate(getAverageRate(freelancers))}
+
+    <table border="1" cellpadding="8">
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Occupation</th>
+          <th>Rate</th>
+        </tr>
+      </thead>
+      <tbody id="FreelancerRows"></tbody>
+    </table>
+  `;
+
+  // Replace the REAL tbody with rendered rows
+  app
+    .querySelector("#FreelancerRows")
+    .outerHTML = `
+      <tbody>
+        ${FreelancerRows(freelancers)}
+      </tbody>
+    `;
+}
+
+render();
