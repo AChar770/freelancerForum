@@ -17,6 +17,12 @@ Write code according to the provided prompts. You are highly encouraged to revie
 7. Write a component function to represent the average rate of all freelancers.
 8. Write and call a render function that will mount the application onto the document.
 
+Ask yourself these 3 questions per function:
+What goes IN?
+What comes OUT?
+Does it touch the DOM?
+
+
 > [!NOTE]
 >
 > You have a lot of creative freedom as to what the components actually are, as long as they are properly mounted and render all of the necessary information!

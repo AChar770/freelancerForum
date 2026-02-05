@@ -19,7 +19,7 @@ function getRandomItem(array) {
   // Multiply by array length → valid index range
   // Math.floor → whole number index
   
-  // This function creates ONE freelancer object
+  // This creates ONE freelancer object
 // does NOT touch the DOM
 // It ONLY returns data
 function createFreelancer() {
@@ -28,6 +28,42 @@ function createFreelancer() {
     occupation: getRandomItem(OCCUPATIONS),
     rate: Math.floor(Math.random() * 100) + 20, // rate between 20–119
   };
+}
+
+
+// This array represents the current "state" of our app
+// Everything else depends on this variable
+const freelancers = Array.from(
+  { length: NUM_FREELANCERS },
+  createFreelancer
+);
+
+// Always log state while learning
+console.log("STATE:", freelancers);
+
+// This calculates the average rate
+// It does NOT store the value — it computes it
+function getAverageRate(freelancers) {
+  const total = freelancers.reduce(
+    (sum, freelancer) => sum + freelancer.rate,
+    0
+  );
+
+  return total / freelancers.length;
+}
+
+
+// This returns HTML for ONE freelancer
+// Input: freelancer object
+// Output: HTML string
+function FreelancerRow(freelancer) {
+  return `
+    <tr>
+      <td>${freelancer.name}</td>
+      <td>${freelancer.occupation}</td>
+      <td>$${freelancer.rate}</td>
+    </tr>
+  `;
 }
 
 
